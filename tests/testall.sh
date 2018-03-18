@@ -39,3 +39,8 @@ do
   ./testone.sh $bugNo $expected "$@" | tee -a testall.log
 done < testcases.txt
 
+echo "Testing github21"
+if ! ../bin/tidyp -f /dev/null -config ./input/cfg_github21.txt ./input/in_github21.xhtml | cmp -s - ./output/out_github21.xhtml ; then
+    echo "Wrong github21 output"
+    exit -1
+fi

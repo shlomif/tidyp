@@ -2021,6 +2021,7 @@ static Node* GetTokenFromStream( TidyDocImpl* doc, GetTokenMode mode )
     {
         if (lexer->insertspace)
         {
+            fprintf(stderr, "Foli\n");
             TY_(AddCharToLexer)(lexer, ' ');
             lexer->waswhite = yes;
             lexer->insertspace = no;
@@ -2043,6 +2044,7 @@ static Node* GetTokenFromStream( TidyDocImpl* doc, GetTokenMode mode )
                 if (TY_(IsWhite)(c) && (mode == IgnoreWhitespace)
                       && lexer->lexsize == lexer->txtstart + 1)
                 {
+                    fprintf(stderr, "shin\n");
                     --(lexer->lexsize);
                     lexer->waswhite = no;
                     SetLexerLocus( doc, lexer );
@@ -2071,7 +2073,12 @@ static Node* GetTokenFromStream( TidyDocImpl* doc, GetTokenMode mode )
                         lexer->waswhite = yes;
 
                         if (mode != Preformatted && mode != IgnoreMarkup && c != ' ')
+                        {
+                            fprintf(stderr, "ttwil\n");
+#if 0
                             ChangeChar(lexer, ' ');
+#endif
+                        }
                     }
 
                     continue;
